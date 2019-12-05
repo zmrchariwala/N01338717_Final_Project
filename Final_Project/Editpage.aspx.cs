@@ -18,9 +18,11 @@ namespace Final_Project
                 Page.Validate();
                 if (Page.IsValid)
                 {
-                    string Pagetitle = page_title.Text.ToString();
-                    string Pagebody = page_body.Text.ToString();
-                    db.updatepage(pid, Pagetitle, Pagebody);
+                    pages pg = new pages();
+                     pg.Setpagetitle(page_title.Text.ToString());
+                     pg.Setpagebody(page_body.Text.ToString());
+                    pg.Setpageauthor(page_author.Text.ToString());
+                    db.updatepage(pid, pg);
                     Response.Redirect("Default.aspx");
                 }
             }
@@ -30,6 +32,8 @@ namespace Final_Project
             {
                 page_title.Text = row["pagetitle"];
                 page_body.Text = row["pagebody"];
+                page_author.Text = row["pageauthor"];
+                
             }
 
 

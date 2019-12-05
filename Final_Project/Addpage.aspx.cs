@@ -16,10 +16,12 @@ namespace Final_Project
                 Page.Validate();
                 if (Page.IsValid)
                 {
-                    string Pagetitle = page_title.Text.ToString();
-                    string Pagebody = page_body.Text.ToString();
                     Database db = new Database();
-                    db.add(Pagetitle, Pagebody);
+                    pages pg = new pages();
+                    pg.Setpagetitle(page_title.Text.ToString());
+                    pg.Setpagebody(page_body.Text.ToString());
+                    pg.Setpageauthor(page_author.Text.ToString());
+                    db.addpage(pg);
                     Response.Redirect("Default.aspx");
                 }
             }

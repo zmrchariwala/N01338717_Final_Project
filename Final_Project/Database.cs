@@ -27,12 +27,13 @@ namespace Final_Project
             }
         }
 
-        public void add(string pagetitle,string pagebody)
+        public void addpage(pages pg)
         {
             MySqlConnection Connect = new MySqlConnection(ConnectionString);
             Connect.Open();
-            string query = "insert into pages(pagetitle,pagebody,pagestatus) values('{0}','{1}','Published')";
-            query = string.Format(query, pagetitle, pagebody);
+            
+            string query = "insert into pages(pagetitle,pagebody,pagedate,pageauthor,pagestatus) values('{0}','{1}',now(),'{2}','Published')";
+            query = string.Format(query, pg.Getpagetitle(),pg.Getpagebody(),pg.Getpageauthor());
             MySqlCommand cmd = new MySqlCommand();
             cmd = new MySqlCommand(query, Connect);
             cmd.ExecuteNonQuery();
@@ -99,12 +100,12 @@ namespace Final_Project
             MySqlCommand cmd = new MySqlCommand(query, Connect);
             cmd.ExecuteNonQuery();
         }
-        public void updatepage(string id,string pagetitle,string pagebody)
+        public void updatepage(string id,pages pg)
         {
             MySqlConnection Connect = new MySqlConnection(ConnectionString);
             Connect.Open();
-            string query = "update pages SET pagetitle = '{0}', pagebody = '{1}' where pageid = {2};";
-            query = string.Format(query,pagetitle,pagebody,id);
+            string query = "update pages SET pagetitle = '{0}', pagebody = '{1}',pageauthor = '{2}' where pageid = {3};";
+            query = string.Format(query,pg.Getpagetitle(),pg.Getpagebody(),pg.Getpageauthor(),id);
             //MySqlConnection Connect = new MySqlConnection(ConnectionString);
             MySqlCommand cmd = new MySqlCommand(query, Connect);
             cmd.ExecuteNonQuery();
@@ -118,7 +119,7 @@ namespace Final_Project
             if (count == 1)
             {
                 
-                query = string.Format(query, "Publish", id);
+                query = string.Format(query, "Published", id);
                 
             }
             else if(count == 2)

@@ -13,7 +13,9 @@
 </div>
     <div ID="add_button">
         <asp:Button  runat="server" CssClass="btn btn-primary" PostBackUrl="~/Addpage.aspx" Text="Add Page" />
-
     </div>
+        <div>
+            <asp:Button  runat="server" CssClass="btn btn-primary" Text="Look" OnClick="lookup" />
+        </div>
         </div>
 </asp:Content>
