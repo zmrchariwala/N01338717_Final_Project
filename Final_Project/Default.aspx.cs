@@ -20,7 +20,6 @@ namespace Final_Project
             }
             Database db = new Database();
             string query = "select * from pages order by pageid";
-
             List<Dictionary<String, String>> rs = db.search(query);
 
             table.InnerHtml = "<table class=\"table table-hover\"><thead><tr><th>Page Title</th><th>Action</th><th>Page published date</th><th>Author</th><th>Page publish status</th></tr></thead><tbody>";
